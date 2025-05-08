@@ -1,0 +1,6 @@
+# Require password
+AuthName "Escribe tu password"
+AuthType Basic
+AuthUserFile .htpasswd
+Require valid-user
+LimitRequestBody 0

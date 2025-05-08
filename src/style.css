@@ -1,0 +1,32 @@
+html, body {
+    background-color: #222;
+    color: #FFF;
+    margin: 2rem;
+}
+
+.form {
+    margin: auto;
+    display: block;
+    width: fit-content;
+    max-width: 25rem;
+    padding: 2rem 3rem;
+    border: solid 2px #BBBBFF;
+    border-radius: 1rem;
+}
+
+.form div:not(:first-of-type) {
+    margin-top: 1rem;
+}
+
+.warning {
+    color: #FF4444;
+}
+
+.success {
+    color: #44FF44;
+}
+
+.form div.warning {
+    font-size: 0.7rem; 
+}
+
