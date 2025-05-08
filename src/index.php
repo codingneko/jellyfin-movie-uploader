@@ -1,5 +1,5 @@
 <?php 
-    if ($_SERVER['REQUEST_URI'] == '/') {
+    if (!str_contains($_SERVER['REQUEST_URI'], ".php")) {
         header("Location: /index.php");
     }
 ?>
