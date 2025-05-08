@@ -3,4 +3,6 @@ AuthName "Escribe tu password"
 AuthType Basic
 AuthUserFile .htpasswd
 Require valid-user
+
+# Disable file upload limit
 LimitRequestBody 0

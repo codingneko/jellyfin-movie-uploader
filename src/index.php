@@ -1,4 +1,8 @@
-<?php error_reporting(E_ALL); ?>
+<?php 
+    if ($_SERVER['REQUEST_URI'] == '/') {
+        header("Location: /index.php");
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
