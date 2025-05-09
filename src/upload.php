@@ -19,16 +19,19 @@
         http_response_code(413);
     }
 
-    if (!(
-        in_array("video/x-msvideo", $_FILES['file']['type']) ||
-        in_array("video/mp4", $_FILES['file']['type']) ||
-        in_array("video/mpeg", $_FILES['file']['type']) ||
-        in_array("video/ogg", $_FILES['file']['type']) ||
-        in_array("video/mp2t", $_FILES['file']['type']) ||
-        in_array("video/webm", $_FILES['file']['type']) ||
-        in_array("video/3gpp", $_FILES['file']['type']) ||
-        in_array("video/3gpp2", $_FILES['file']['type'])
-        )) {
+    $supported_media_types = [
+        "video/x-matroska",
+        "video/x-msvideo",
+        "video/mp4",
+        "video/mpeg",
+        "video/ogg",
+        "video/mp2t",
+        "video/webm",
+        "video/3gpp",
+        "video/3gpp2"
+    ];
+
+    if (!in_array($_FILES['file']['type'], $supported_media_types)) {
         $errored = 1;
         http_response_code(415);
     }
