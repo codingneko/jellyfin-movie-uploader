@@ -9,19 +9,26 @@
     $files = $_FILES['file']['tmp_name'];
     $path = explode("/", $_FILES['file']['full_path'][0])[0];
 
+    //File count check
+
     if (count($files) > 10) {
         http_response_code(400);
         $errored = true;
     }
+
+    // Total file size check
 
     if (array_sum($_FILES['file']['size']) > 10737418240) {
         $errored = 1;
         http_response_code(413);
     }
 
+    // Media type check
+
     $supported_media_types = [
         "video/x-matroska",
         "video/x-msvideo",
+        "video/matroska",
         "video/mp4",
         "video/mpeg",
         "video/ogg",
@@ -31,12 +38,21 @@
         "video/3gpp2"
     ];
 
-    if (!in_array($_FILES['file']['type'], $supported_media_types)) {
-        $errored = 1;
-        http_response_code(415);
+    $media_type_check_ok = false;
+    foreach ($_FILES['file']['type'] as $media_type) {
+        if (in_array($media_type, $supported_media_types)) {
+            $media_type_check_ok = true;
+        }
     }
 
-
+    if (!$media_type_check_ok) {
+        $errored = 1;
+        var_dump($_FILES['file']['type']);
+        http_response_code(415);
+    }
+    
+    // If no checks failed, upload to server
+    
     if (!$errored) {
         foreach ($files as $i => $file) {
             $dir = "uploads/".str_replace($_FILES['file']['name'][$i], "", $_FILES['file']['full_path'][$i]);
