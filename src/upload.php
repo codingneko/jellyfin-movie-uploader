@@ -19,7 +19,7 @@
     // Total file size check
 
     if (array_sum($_FILES['file']['size']) > 10737418240) {
-        $errored = 1;
+        $errored = true;
         http_response_code(413);
     }
 
@@ -46,13 +46,12 @@
     }
 
     if (!$media_type_check_ok) {
-        $errored = 1;
-        var_dump($_FILES['file']['type']);
+        $errored = true;
         http_response_code(415);
     }
     
     // If no checks failed, upload to server
-    
+
     if (!$errored) {
         foreach ($files as $i => $file) {
             $dir = "uploads/".str_replace($_FILES['file']['name'][$i], "", $_FILES['file']['full_path'][$i]);
