@@ -57,7 +57,7 @@
             $dir = "uploads/".str_replace($_FILES['file']['name'][$i], "", $_FILES['file']['full_path'][$i]);
             
             if (!is_dir($dir)) {
-                mkdir($dir);
+                mkdir($dir, 0777, true);
             }
 
             if (!move_uploaded_file($file, 'uploads/'.$_FILES['file']['full_path'][$i])) {
