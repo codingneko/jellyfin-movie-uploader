@@ -11,7 +11,7 @@
 
     //File count check
 
-    if (count($files) > 10) {
+    if (count($files) > 1000) {
         http_response_code(400);
         $errored = true;
     }
@@ -72,7 +72,7 @@
         Asegurate de que:
         <ul>
             <li>El formato es correcto</li>    
-            <li>No has subido mas de 10 archivos a la vez (o menos de 1)</li>
+            <li>No has subido mas de 1000 archivos a la vez (o menos de 1)</li>
             <li>Todos tus archivos no superan los 10 GB</li>
         </ul>
         Actualiza la pagina para continuar.
